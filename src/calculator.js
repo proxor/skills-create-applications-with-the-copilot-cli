@@ -2,7 +2,8 @@
 
 /**
  * Basic CLI calculator.
- * Supported operations: addition (+), subtraction (-), multiplication (*), division (/).
+ * Supported operations: addition (+), subtraction (-), multiplication (*), division (/),
+ * modulo (%), power (^), square root (sqrt).
  */
 
 function addition(a, b) {
@@ -24,6 +25,24 @@ function division(a, b) {
   return a / b;
 }
 
+function modulo(a, b) {
+  if (b === 0) {
+    throw new Error("Modulo by zero is not allowed.");
+  }
+  return a % b;
+}
+
+function power(base, exponent) {
+  return base ** exponent;
+}
+
+function squareRoot(n) {
+  if (n < 0) {
+    throw new Error("Square root of a negative number is not allowed.");
+  }
+  return Math.sqrt(n);
+}
+
 function calculate(a, operator, b) {
   switch (operator) {
     case "+":
@@ -39,8 +58,18 @@ function calculate(a, operator, b) {
     case "/":
     case "division":
       return division(a, b);
+    case "%":
+    case "modulo":
+      return modulo(a, b);
+    case "^":
+    case "power":
+      return power(a, b);
+    case "sqrt":
+    case "squareRoot":
+    case "square-root":
+      return squareRoot(a);
     default:
-      throw new Error("Unsupported operator. Use +, -, *, or /.");
+      throw new Error("Unsupported operator. Use +, -, *, /, %, ^, or sqrt.");
   }
 }
 
@@ -75,5 +104,8 @@ module.exports = {
   subtraction,
   multiplication,
   division,
+  modulo,
+  power,
+  squareRoot,
   calculate,
 };
